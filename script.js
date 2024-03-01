@@ -1,3 +1,23 @@
+let n1;
+let operator;
+let n2;
+
+function operate(a, operator, b) {
+    switch(operator) {
+        case "+":
+            add(a, b);
+            break;
+        case "-":
+            subtract(a, b);
+            break;
+        case "*":
+            multiply(a, b);
+            break;
+        case "/":
+            divide(a, b);
+    }
+}
+
 function add(a, b) {
     return a + b;
 }
