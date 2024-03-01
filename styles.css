@@ -1,0 +1,51 @@
+body {
+    font-family: Hero, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0px;
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    width: 265px;
+}
+
+.display {
+    height: 100px;
+    width: 265px;
+    display: flex;
+    flex-direction: column;
+    background-color: red;
+}
+
+.numpad {
+    display: flex;
+    padding: 5px;
+    background-color: blue;
+}
+
+.numeric {
+    display: flex;
+    flex-wrap: wrap;
+    width: 200px;
+    gap: 5px;
+}
+
+.functions {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.button {
+    width: 60px;
+    height: 60px;
+}
+
+
+
+
+
