@@ -33,3 +33,53 @@ function multiply(a, b) {
 function divide(a, b) {
     return a / b;
 }
+const num = document.querySelector('.numpad');
+
+num.addEventListener('mouseover', (event) => {
+    let target = event.target;
+
+    if (target.classList.contains('buttonN')) {
+        target.style.backgroundColor = '#5C5470';
+    }
+    else if (target.classList.contains('buttonF')) {
+        target.style.backgroundColor = '#EEE4BE';
+    }
+});
+
+num.addEventListener('mouseout', (event) => {
+    let target = event.target;
+
+    if (target.classList.contains('buttonN') || target.classList.contains('buttonF')) {
+        target.style.backgroundColor = '#352F44';
+    } 
+
+});
+
+num.addEventListener('mousedown', (event) => {
+    let target = event.target;
+
+    if (target.classList.contains('buttonN')) {
+        target.style.border = '1px solid #FAF0E6';
+    }
+    if (target.classList.contains('buttonF')) {
+        target.style.border = '1px solid #B59410'
+    }
+});
+
+
+num.addEventListener('mouseup', (event) => {
+    let target = event.target;
+
+    if (target.classList.contains('buttonN') || target.classList.contains('buttonF')) {
+        target.style.border = 'none';
+    }
+});
+
+num.addEventListener('mouseout', (event) => {
+    let target = event.target;
+
+    if (target.classList.contains('buttonN') || target.classList.contains('buttonF')) {
+        target.style.border = 'none';
+    }
+});
+

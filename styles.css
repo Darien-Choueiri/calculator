@@ -5,26 +5,31 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0px;
+    background-color: #a2bbcf;
 }
 
 .calculator {
     display: flex;
     flex-direction: column;
-    width: 265px;
+    width: 275px;
 }
 
 .display {
     height: 100px;
-    width: 265px;
+    width: 275px;
     display: flex;
     flex-direction: column;
-    background-color: red;
+    background-color: #5C5470;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
 .numpad {
     display: flex;
-    padding: 5px;
-    background-color: blue;
+    padding: 10px;
+    background-color: #352F44;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .numeric {
@@ -40,12 +45,20 @@ body {
     gap: 5px;
 }
 
-.button {
+.buttonN, .buttonF{
     width: 60px;
     height: 60px;
+    border-radius: 50%;
+    font-size: 24px;
+    border: none;
+    background-color: #352F44;
 }
 
+.buttonN {
+    color: #FAF0E6;
+}
 
-
-
+.buttonF {
+    color: #B59410;
+}
 
