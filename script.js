@@ -69,6 +69,16 @@ num.addEventListener('click', (event) => {
     }
 });
 
+num.addEventListener('click', (event) => {
+    let target = event.target;
+    if (target.classList.contains('buttonF') && target.innerText === 'AC') {
+        n1 = 0;
+        n2 = 0;
+        result = '';
+        display.innerText = result;
+    }
+});
+
 num.addEventListener('mouseover', (event) => {
     let target = event.target;
 
