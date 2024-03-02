@@ -1,7 +1,7 @@
-let n1;
-let operator;
-let n2;
-let result;
+let n1 = null;
+let operator = '';
+let n2 = null;
+let result = null;
 
 function operate(a, operator, b) {
     switch(operator) {
@@ -42,13 +42,16 @@ num.addEventListener('click', (event) => {
         val += target.innerText;
         display.innerText = val;
     }
+
+    //buggy - need to flowchart the possibilites for this to make better code
     else if (target.classList.contains('buttonF') && target.innerText != 'AC' 
     && target.innerText != '='){
-        if (n1) {
+        if (n1 != null && operator != '' && val != '') {
             n2 = Number(val);
             result = operate(n1, operator, n2);
-            n1 = result;
-            val = result;
+            n1 = Number(result);
+            n2 = null;
+            val = '';
             display.innerText = result;
         } else {
             n1 = Number(val);
@@ -57,14 +60,15 @@ num.addEventListener('click', (event) => {
             display.innerText = val;
         }
     }
-    //idea when +=/* is called just store the val in n1
+    //buggy 
     else if (target.innerText === '='){
+
         n2 = Number(val);
         result = operate(n1, operator, n2);
         val = result;
         display.innerText = val;
-        n1 = 0;
-        n2 = 0;
+        n1 = null;
+        n2 = null;
         val = '';
     }
 });
@@ -72,8 +76,8 @@ num.addEventListener('click', (event) => {
 num.addEventListener('click', (event) => {
     let target = event.target;
     if (target.classList.contains('buttonF') && target.innerText === 'AC') {
-        n1 = 0;
-        n2 = 0;
+        n1 = null;
+        n2 = null;
         result = '';
         display.innerText = result;
     }
