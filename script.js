@@ -1,20 +1,18 @@
 let n1;
 let operator;
 let n2;
+let result;
 
 function operate(a, operator, b) {
     switch(operator) {
         case "+":
-            add(a, b);
-            break;
+            return add(a, b);
         case "-":
-            subtract(a, b);
-            break;
-        case "*":
-            multiply(a, b);
-            break;
-        case "/":
-            divide(a, b);
+            return subtract(a, b);
+        case "x":
+            return multiply(a, b);
+        case "÷":
+            return divide(a, b);
     }
 }
 
@@ -36,15 +34,39 @@ function divide(a, b) {
 const num = document.querySelector('.numpad');
 const display = document.querySelector('.display')
 
-let val;
+let val = '';
+
 num.addEventListener('click', (event) => {
     let target = event.target;
     if (target.classList.contains('buttonN')) {
-        val = target.innerText;
+        val += target.innerText;
         display.innerText = val;
     }
-
-
+    else if (target.classList.contains('buttonF') && target.innerText != 'AC' 
+    && target.innerText != '='){
+        if (n1) {
+            n2 = Number(val);
+            result = operate(n1, operator, n2);
+            n1 = result;
+            val = result;
+            display.innerText = result;
+        } else {
+            n1 = Number(val);
+            operator = target.innerText;
+            val = '';
+            display.innerText = val;
+        }
+    }
+    //idea when +=/* is called just store the val in n1
+    else if (target.innerText === '='){
+        n2 = Number(val);
+        result = operate(n1, operator, n2);
+        val = result;
+        display.innerText = val;
+        n1 = 0;
+        n2 = 0;
+        val = '';
+    }
 });
 
 num.addEventListener('mouseover', (event) => {
