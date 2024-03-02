@@ -16,12 +16,18 @@ body {
 
 .display {
     height: 100px;
-    width: 275px;
+    width: 265px;
+    padding-top: 30px;
+    padding-right: 10px;
     display: flex;
     flex-direction: column;
     background-color: #5C5470;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    align-items: flex-end;
+    justify-content: center;
+    color: #FAF0E6;
+    font-size: 60px; 
 }
 
 .numpad {

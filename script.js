@@ -34,6 +34,18 @@ function divide(a, b) {
     return a / b;
 }
 const num = document.querySelector('.numpad');
+const display = document.querySelector('.display')
+
+let val;
+num.addEventListener('click', (event) => {
+    let target = event.target;
+    if (target.classList.contains('buttonN')) {
+        val = target.innerText;
+        display.innerText = val;
+    }
+
+
+});
 
 num.addEventListener('mouseover', (event) => {
     let target = event.target;
