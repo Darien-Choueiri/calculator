@@ -58,7 +58,7 @@ num.addEventListener('click', (event) => {
             operator = target.innerText;
         } else {
             n2 = Number(val);
-            result = operate(n1, operator, n2);
+            result = Math.round(operate(n1, operator, n2) * 100)/100;
             if (result > 999999) {
                 n1 = null;
                 n2 = null;
@@ -77,7 +77,7 @@ num.addEventListener('click', (event) => {
             display.innerText = ">:(";
             n1 = null; 
         } else {
-            result = operate(n1, operator, n2);
+            result = Math.round(operate(n1, operator, n2) * 100)/100;
             if (result > 999999) {
                 display.innerText = "Error";
                 n1 = null; 
