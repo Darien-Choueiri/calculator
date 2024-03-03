@@ -36,47 +36,52 @@ const display = document.querySelector('.display')
 
 let val = '';
 let n1 = null;
-let operator = '';
 let n2 = null;
 let result = null;
+let operator = '';
 let operatorNext = '';
+
+
 num.addEventListener('click', (event) => {
     let target = event.target;
 
-    if (target.classList.contains('buttonN')) {
+    //displays numbers
+    if (target.classList.contains('buttonN') && val.length < 7) {
         val += target.innerText;
         display.innerText = val;
-    }
-    //works if you use = between each step, does not work without that
+    } 
+
+    //handles when the math function buttons are pressed
     if (target.classList.contains('buttonF') && target.innerText != 'AC' 
     && target.innerText != '='){
-        if (!n1){
+        if (!n1) {
             n1 = Number(val);
+            val = '';
+            operator = target.innerText;
+            display.innerText = n1;
+        } else if (val.length === 0){
             operator = target.innerText;
             val = '';
-            display.innerText = val;
         } else {
-            operatorNext = target.innerText;
             n2 = Number(val);
             result = operate(n1, operator, n2);
+            operator = target.innerText;
             n1 = result;
             display.innerText = n1;
-            operator = operatorNext;
-            operatorNext = '';
             val = '';
         }
-
-    } 
+    }
+    //handles the result button
     if (target.innerText === '='){
         n2 = Number(val);
         result = operate(n1, operator, n2);
-        val = result;
-        display.innerText = val;
+        display.innerText = result;
         n1 = result;
         operator = '';
         n2 = null;
         val = '';
     }
+
 });
 
 num.addEventListener('click', (event) => {
