@@ -1,8 +1,3 @@
-let n1 = null;
-let operator = '';
-let n2 = null;
-let result = null;
-
 function operate(a, operator, b) {
     switch(operator) {
         case "+":
@@ -31,43 +26,54 @@ function multiply(a, b) {
 function divide(a, b) {
     return a / b;
 }
+
 const num = document.querySelector('.numpad');
 const display = document.querySelector('.display')
 
-let val = '';
+//flow chart
+// number -> symbol -> number -> =
+// number -> symbol -> number -> symbol -> number -> equals
 
+let val = '';
+let n1 = null;
+let operator = '';
+let n2 = null;
+let result = null;
+let operatorNext = '';
 num.addEventListener('click', (event) => {
     let target = event.target;
+
     if (target.classList.contains('buttonN')) {
         val += target.innerText;
         display.innerText = val;
     }
-
-    //buggy - need to flowchart the possibilites for this to make better code
-    else if (target.classList.contains('buttonF') && target.innerText != 'AC' 
+    //works if you use = between each step, does not work without that
+    if (target.classList.contains('buttonF') && target.innerText != 'AC' 
     && target.innerText != '='){
-        if (n1 != null && operator != '' && val != '') {
-            n2 = Number(val);
-            result = operate(n1, operator, n2);
-            n1 = Number(result);
-            n2 = null;
-            val = '';
-            display.innerText = result;
-        } else {
+        if (!n1){
             n1 = Number(val);
             operator = target.innerText;
             val = '';
             display.innerText = val;
+        } else {
+            operatorNext = target.innerText;
+            n2 = Number(val);
+            result = operate(n1, operator, n2);
+            n1 = result;
+            display.innerText = n1;
+            operator = operatorNext;
+            operatorNext = '';
+            val = '';
         }
-    }
-    //buggy 
-    else if (target.innerText === '='){
 
+    } 
+    if (target.innerText === '='){
         n2 = Number(val);
         result = operate(n1, operator, n2);
         val = result;
         display.innerText = val;
-        n1 = null;
+        n1 = result;
+        operator = '';
         n2 = null;
         val = '';
     }
@@ -76,10 +82,12 @@ num.addEventListener('click', (event) => {
 num.addEventListener('click', (event) => {
     let target = event.target;
     if (target.classList.contains('buttonF') && target.innerText === 'AC') {
+        val = '';
         n1 = null;
         n2 = null;
-        result = '';
-        display.innerText = result;
+        operator = '';
+        result = null;
+        display.innerText = val;
     }
 });
 
