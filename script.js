@@ -30,10 +30,6 @@ function divide(a, b) {
 const num = document.querySelector('.numpad');
 const display = document.querySelector('.display')
 
-//flow chart
-// number -> symbol -> number -> =
-// number -> symbol -> number -> symbol -> number -> equals
-
 let val = '';
 let n1 = null;
 let n2 = null;
@@ -56,30 +52,44 @@ num.addEventListener('click', (event) => {
     && target.innerText != '='){
         if (!n1) {
             n1 = Number(val);
-            val = '';
             operator = target.innerText;
             display.innerText = n1;
         } else if (val.length === 0){
             operator = target.innerText;
-            val = '';
         } else {
             n2 = Number(val);
             result = operate(n1, operator, n2);
-            operator = target.innerText;
-            n1 = result;
-            display.innerText = n1;
-            val = '';
+            if (result > 999999) {
+                n1 = null;
+                n2 = null;
+                operator = '';
+            } else {
+                operator = target.innerText;
+                n1 = result;
+                display.innerText = n1;
+            }
         }
+        val = '';
     }
-    //handles the result button
     if (target.innerText === '='){
         n2 = Number(val);
-        result = operate(n1, operator, n2);
-        display.innerText = result;
-        n1 = result;
-        operator = '';
+        if (operator === '÷' && n2 === 0) {
+            display.innerText = ">:(";
+            n1 = null; 
+        } else {
+            result = operate(n1, operator, n2);
+            if (result > 999999) {
+                display.innerText = "Error";
+                n1 = null; 
+            } else {
+                display.innerText = result;
+                n1 = result;
+            }
+        }
         n2 = null;
+        operator = '';
         val = '';
+
     }
 
 });
